@@ -1,0 +1,1 @@
+angular.module('AngularMapModule', ['uiGmapgoogle-maps', 'firebase']);
