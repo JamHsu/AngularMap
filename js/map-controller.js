@@ -34,8 +34,7 @@
 		      		vm.isLogin = true;
 		      		console.log(authData);
 		     		console.log("Logged in as:", authData.facebook.displayName);
-		      		vm.LoginUser.name = authData.facebook.displayName;
-		 			vm.LoginUser.gender = authData.facebook.cachedUserProfile.gender;
+		      		vm.loginUser.name = authData.facebook.displayName;
 		      		vm.authData = authData;
 	      		}
     	
@@ -47,9 +46,20 @@
   		}
 
   		function addMessage(msg) {
-  			console.log(msg);
-  			vm.messageAry.$add({text:msg});
-    		$scope.msg = "";
+
+  			if(vm.isLogin) {
+	  			console.log(msg);
+	  			// vm.messageAry.$add({text:msg});
+	    		$scope.msg = "";
+
+	    		vm.messageAry.$add({
+				    text : msg,
+				    name : vm.loginUser.name,
+				    picture: vm.authData.facebook.cachedUserProfile.picture.data.url
+			    });
+    		} else {
+    			alert("Please Login Facebook.");
+    		}
   		}
 	}
 
