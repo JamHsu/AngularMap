@@ -47,10 +47,9 @@
 
   		function addMessage(msg) {
 
+			$scope.msg = "";	
+			console.log(msg);
   			if(vm.isLogin) {
-	  			console.log(msg);
-	  			// vm.messageAry.$add({text:msg});
-	    		$scope.msg = "";
 
 	    		vm.messageAry.$add({
 				    text : msg,
@@ -58,7 +57,7 @@
 				    picture: vm.authData.facebook.cachedUserProfile.picture.data.url
 			    });
     		} else {
-    			alert("Please Login Facebook.");
+    			vm.messageAry.$add({text:msg});
     		}
   		}
 	}
