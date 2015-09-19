@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="UploadModule">
+
+<head>
+    <style>
+        .my-drop-zone {
+            border: 3px dotted lightgray;
+        }
+        .nv-file-over {
+            border: 3px dotted red;
+        }
+        .another-file-over-class {
+            border: 3px dotted green;
+        }
+        html, body {
+            height: 100%;
+        }
+        canvas {
+            background-color: #f3f3f3;
+            border: 1px solid #c3c3c3;
+            box-shadow: 3px 3px 3px 0 #e3e3e3;
+            height: 100px;
+            margin: 6px 0 0 6px;
+        }
+
+    </style>
+    
+    <meta charset="UTF-8">
+    <title>Test upload to Imgur</title>
+    <link href="js/library/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" src="js/library/jquery/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/library/bootstrap/bootstrap.js"></script>
+    <script type="text/javascript" src="js/library/angularjs/angular.js"></script>
+    <script type="text/javascript" src="js/library/angular-file-upload/angular-file-upload.min.js"></script>
+    <script type="text/javascript" src="js/library/ng-imgur/ng-imgur.js"></script>
+    <script type="text/javascript" src="js/module.js"></script>
+    <script type="text/javascript" src="js/test-controller.js"></script>
+</head>
+
+<body ng-controller="TestController as vm">
+    <div class="row">
+        <div class="col-md-3">
+            <label>Add Picture</label>
+            <div>
+                <div class="well my-drop-zone" uploader="vm.uploader" nv-file-drop=""> Base drop zone </div>
+            </div>
+             <a>{{vm.testData}}</a>
+            <input type="file" nv-file-drop uploader="vm.uploader"/><br/>
+            <ul>
+                <li ng-repeat="item in vm.uploader.queue">
+                    Name: <span ng-bind="item.file.name"></span><br/>
+                    <div ng-thumb="{ file: item._file, height: 100 }"></div>
+                    <button ng-click="vm.uploadImg(item._file)">upload</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
